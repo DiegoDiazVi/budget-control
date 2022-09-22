@@ -1,15 +1,28 @@
 import React from 'react'
+import BudgetControl from './BudgetControl'
 import NewBudget from './NewBudget'
 
-const Header = ({budget, setBudget}) => {
+const Header = ({
+        budget,
+        setBudget,
+        isBudgetValid,
+        setIsBudgetValid
+}) => {
     return (
         <header>
             <h1>Planificador de gastos</h1>
-
-            <NewBudget
-                budget={budget}
-                setBudget={setBudget}
-            />
+            { isBudgetValid ? (
+                <BudgetControl
+                    budget={budget}
+                />
+            ) : (
+                <NewBudget
+                    budget={budget}
+                    setBudget={setBudget}
+                    setIsBudgetValid={setIsBudgetValid}
+                />
+            )
+            }
         </header>
     )
 }
