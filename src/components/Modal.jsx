@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Close from '../img/cerrar.svg'
 
 /*
@@ -11,6 +11,9 @@ import Close from '../img/cerrar.svg'
 */
 const Modal = ({setModal, animateModal, setAnimateModal}) => {
 
+    const [expenseName, setExpenseName] = useState('');
+    const [expenseAmount, setExpenseAmount] = useState(0);
+    const [expenseCategory, setExpenseCategory] = useState('');
 /*
     * Funcion que esconde el modal
     * modifical el state del animador
@@ -53,6 +56,8 @@ const Modal = ({setModal, animateModal, setAnimateModal}) => {
                         id='nombre'
                         type="text"
                         placeholder='Añade el nombre del gasto'
+                        value={expenseName}
+                        onChange={(e) => setExpenseName(e.target.value)}
                     />
                 </div>
 
@@ -62,6 +67,8 @@ const Modal = ({setModal, animateModal, setAnimateModal}) => {
                         id='nombre'
                         type="number"
                         placeholder='Añade la cantidad del gasto'
+                        value={expenseAmount}
+                        onChange={(e) => setExpenseAmount(Number(e.target.value))}
                     />
                 </div>
 
@@ -69,6 +76,8 @@ const Modal = ({setModal, animateModal, setAnimateModal}) => {
                     <label htmlFor="categoria">Categoria</label>
                     <select
                         id="categoria"
+                        value={expenseCategory}
+                        onChange={(e) => setExpenseCategory(e.target.value)}
                     >
                         <option value="">-- Selecciona --</option>
                         <option value="ahorro">Ahorro</option>
