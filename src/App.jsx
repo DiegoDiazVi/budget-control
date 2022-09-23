@@ -5,12 +5,23 @@ import NewExpenseIcon from './img/nuevo-gasto.svg'
 
 function App() {
 
+  /*
+    *States de los gastos, Flag de gasto valido,
+    *flag de mostrar modal, flag de animar el modal
+  */
+
   const [budget, setBudget] = useState(0);
   const [isBudgetValid, setIsBudgetValid] = useState(false);
   const [modal, setModal] = useState(false);
   const [animateModal, setAnimateModal] = useState(false);
 
-  const handleNewBudGet = () => {
+    /*
+    * Funcion setea el estado del modal
+    * para que muestre el modal y luego de medio
+    * segundo setea el state que anima el formulario del modal
+  */
+
+  const handleNewBudget = () => {
     setModal(true);
 
     setTimeout(() => {
@@ -18,6 +29,24 @@ function App() {
     }, 500);
   }
 
+
+      /*
+    * ------ Header --------
+    * Se propaga el state del prespuesto
+    * y el modificador y
+    * Se propaga el state  si el prespuesto
+    * es valido y  el modificador
+    *
+    * ------ New Budget ----
+    * Si el state del presupeusto es valido
+    * se muestra el icono para agregar el gasto
+    * ------ Modal ---------
+    *
+    * Si el state del modal existe muestra el
+    * modal y le propaga el modificador del modal
+    * el state del animador del modal y  el
+    * modificador de este
+  */
   return (
     <>
       <Header
@@ -31,7 +60,7 @@ function App() {
           <img
             src={NewExpenseIcon}
             alt="Icono de nuevo gasto"
-            onClick={handleNewBudGet}
+            onClick={handleNewBudget}
           />
         </div>
       )}

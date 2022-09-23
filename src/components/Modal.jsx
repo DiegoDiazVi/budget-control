@@ -1,8 +1,23 @@
 import React from 'react'
 import Close from '../img/cerrar.svg'
 
+/*
+    * Componente encargado del modal
+    * para ingresar datos
+    * se reciben los props del modificador
+    * que muestra el modal, el state para
+    * animar o no el modal y el modificador
+    * del animador del modal
+*/
 const Modal = ({setModal, animateModal, setAnimateModal}) => {
 
+/*
+    * Funcion que esconde el modal
+    * modifical el state del animador
+    * del modal y modifica el state
+    * del modal para cerrarlo luego
+    * de medio segundo
+*/
     const hideModal = () => {
         setAnimateModal(false);
 
@@ -10,7 +25,14 @@ const Modal = ({setModal, animateModal, setAnimateModal}) => {
             setModal(false);
         }, 500);
     }
-
+/*
+    * Modal, boton de cerrado de modal
+    * ------ Formulario -------------
+    * Formulario que recibe clases dinamicas
+    * de CSS para animar o cerrar el formulario
+    * del modal y permite la seleccion de los
+    * gastos que se van a registrar
+*/
     return (
         <div className="modal">
 
