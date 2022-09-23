@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import Message from './Message';
 import Close from '../img/cerrar.svg'
 
 /*
@@ -11,9 +12,13 @@ import Close from '../img/cerrar.svg'
 */
 const Modal = ({setModal, animateModal, setAnimateModal}) => {
 
+/*
+    * States de los gatos y el mensaje de error
+*/
     const [expenseName, setExpenseName] = useState('');
     const [expenseAmount, setExpenseAmount] = useState(0);
     const [expenseCategory, setExpenseCategory] = useState('');
+    const [modalMessage, setModalMessage] = useState('');
 /*
     * Funcion que esconde el modal
     * modifical el state del animador
@@ -28,6 +33,21 @@ const Modal = ({setModal, animateModal, setAnimateModal}) => {
             setModal(false);
         }, 500);
     }
+
+/*
+    * Validacion luego de enviar el submit
+    * de que ningun campo este vacio
+*/
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if ([expenseName, expenseAmount, expenseCategory].includes('')) {
+            setModalMessage('Todos los campos son obligatorios');
+            return
+        }
+        setModalMessage('');
+    }
+
 /*
     * Modal, boton de cerrado de modal
     * ------ Formulario -------------
@@ -46,9 +66,10 @@ const Modal = ({setModal, animateModal, setAnimateModal}) => {
                     onClick={hideModal}
                 />
             </div>
-
-            <form className={`formulario ${animateModal ? 'animar' : 'cerrar'}`}>
+            <form onSubmit={handleSubmit} className={`formulario ${animateModal ? 'animar' : 'cerrar'}`}>
                 <legend>Nuevo Gasto</legend>
+
+                {modalMessage && <Message tipo='error'>{modalMessage}</Message>}
 
                 <div className="campo">
                     <label htmlFor="nombre">Nombre Gasto</label>
