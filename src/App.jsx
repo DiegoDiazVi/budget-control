@@ -14,6 +14,7 @@ function App() {
   const [isBudgetValid, setIsBudgetValid] = useState(false);
   const [modal, setModal] = useState(false);
   const [animateModal, setAnimateModal] = useState(false);
+  const [expenses, setExpenses] = useState([]);
 
     /*
     * Funcion setea el estado del modal
@@ -29,6 +30,9 @@ function App() {
     }, 500);
   }
 
+  const saveExpense = (expense) => {
+    setExpenses([...expenses, expense]);
+  }
 
       /*
     * ------ Header --------
@@ -65,7 +69,7 @@ function App() {
         </div>
       )}
 
-      {modal && <Modal setModal={setModal} animateModal={animateModal} setAnimateModal={setAnimateModal}/>}
+      {modal && <Modal setModal={setModal} animateModal={animateModal} setAnimateModal={setAnimateModal} saveExpense={saveExpense}/>}
     </>
   )
 }

@@ -10,7 +10,12 @@ import Close from '../img/cerrar.svg'
     * animar o no el modal y el modificador
     * del animador del modal
 */
-const Modal = ({setModal, animateModal, setAnimateModal}) => {
+const Modal = ({
+    setModal,
+    animateModal,
+    setAnimateModal,
+    saveExpense,
+}) => {
 
 /*
     * States de los gatos y el mensaje de error
@@ -46,6 +51,7 @@ const Modal = ({setModal, animateModal, setAnimateModal}) => {
             return
         }
         setModalMessage('');
+        saveExpense({expenseName, expenseAmount, expenseCategory});
     }
 
 /*
