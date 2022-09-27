@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Header from './components/Header'
 import Modal from './components/Modal';
+import { idGenerate } from './helpers';
 import NewExpenseIcon from './img/nuevo-gasto.svg'
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
   }
 
   const saveExpense = (expense) => {
+    expense.id = idGenerate();
     setExpenses([...expenses, expense]);
   }
 
