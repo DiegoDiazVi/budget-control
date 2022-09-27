@@ -34,6 +34,11 @@ function App() {
   const saveExpense = (expense) => {
     expense.id = idGenerate();
     setExpenses([...expenses, expense]);
+
+    setAnimateModal(false);
+    setTimeout(() => {
+      setModal(false);
+  }, 500);
   }
 
       /*
