@@ -41,7 +41,9 @@ const Modal = ({
 
 /*
     * Validacion luego de enviar el submit
-    * de que ningun campo este vacio
+    * de que ningun campo este vacio y envia
+    * las las props a la funcion que guarda
+    * el gasto
 */
     const handleSubmit = (e) => {
         e.preventDefault();

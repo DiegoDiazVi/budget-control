@@ -31,6 +31,13 @@ function App() {
     }, 500);
   }
 
+
+  /*
+    * Funcion setea el estado de los gastos
+    * para que almacene el gasto a registrar y
+    * luego deje de muestrar modal
+  */
+
   const saveExpense = (expense) => {
     expense.id = idGenerate();
     setExpenses([...expenses, expense]);
