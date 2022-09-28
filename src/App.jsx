@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Header from './components/Header'
 import Modal from './components/Modal';
 import BudgetList from './components/BudgetList';
-import { idGenerate } from './helpers';
+import { idGenerate, dateGenerate } from './helpers';
 import NewExpenseIcon from './img/nuevo-gasto.svg'
 
 function App() {
@@ -41,6 +41,7 @@ function App() {
 
   const saveExpense = (expense) => {
     expense.id = idGenerate();
+    expense.expenseDate = dateGenerate();
     setExpenses([...expenses, expense]);
 
     setAnimateModal(false);

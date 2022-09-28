@@ -3,3 +3,14 @@ export const idGenerate = () => {
     const date = Date.now().toString(36);
     return date + random ;
 }
+
+const options = {
+    year: 'numeric',
+    month: 'long',
+    day: '2-digit'
+}
+
+export const dateGenerate = (parameters = options) => {
+    const date = new Date();
+    return date.toLocaleDateString('es-ES', parameters);
+}
