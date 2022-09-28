@@ -14,3 +14,10 @@ export const dateGenerate = (parameters = options) => {
     const date = new Date();
     return date.toLocaleDateString('es-ES', parameters);
 }
+
+export const toCurrencyFormat = (money) => {
+    return money.toLocaleString('es-CO',{
+        style: 'currency',
+        currency: 'COP'
+    });
+}
