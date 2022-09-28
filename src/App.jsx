@@ -68,7 +68,7 @@ function App() {
     * modificador de este
   */
   return (
-    <>
+    <div className={modal && 'fijar'}>
       <Header
         budget={budget}
         setBudget={setBudget}
@@ -91,7 +91,7 @@ function App() {
       )}
 
       {modal && <Modal setModal={setModal} animateModal={animateModal} setAnimateModal={setAnimateModal} saveExpense={saveExpense}/>}
-    </>
+    </div>
   )
 }
 
