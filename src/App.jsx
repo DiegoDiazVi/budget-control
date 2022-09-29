@@ -68,12 +68,13 @@ function App() {
     * modificador de este
   */
   return (
-    <div className={modal && 'fijar'}>
+    <div className={modal ? 'fijar' : ''}>
       <Header
         budget={budget}
         setBudget={setBudget}
         isBudgetValid={isBudgetValid}
         setIsBudgetValid={setIsBudgetValid}
+        expenses={expenses}
       />
       {isBudgetValid && (
         <>
