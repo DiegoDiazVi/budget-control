@@ -14,6 +14,8 @@ const BudgetControl = ({budget, expenses}) => {
 
     useEffect(() => {
         const spentTotal = expenses.reduce((total, expense) => expense.expenseAmount + total, 0);
+        const availableTotal = budget - spentTotal;
+        setAvailable(availableTotal);
         setSpent(spentTotal);
     }, [expenses]);
 
@@ -30,7 +32,7 @@ const BudgetControl = ({budget, expenses}) => {
                     <span>Presupuesto: </span> {toCurrencyFormat(budget)}
                 </p>
                 <p>
-                    <span>Disponible: </span> {toCurrencyFormat(0)}
+                    <span>Disponible: </span> {toCurrencyFormat(available)}
                 </p>
                 <p>
                     <span>Gastado: </span> {toCurrencyFormat(spent)}
