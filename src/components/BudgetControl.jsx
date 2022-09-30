@@ -1,6 +1,5 @@
 import React from 'react'
-import { useState } from 'react';
-import { useEffect } from 'react';
+import { useState, useEffect} from 'react';
 import { toCurrencyFormat } from '../helpers';
 
 /*
@@ -10,7 +9,7 @@ import { toCurrencyFormat } from '../helpers';
 const BudgetControl = ({budget, expenses}) => {
 
     const [available, setAvailable] = useState(0);
-    const [spent, setSpent] = useState(0)
+    const [spent, setSpent] = useState(0);
 
     useEffect(() => {
         const spentTotal = expenses.reduce((total, expense) => expense.expenseAmount + total, 0);
