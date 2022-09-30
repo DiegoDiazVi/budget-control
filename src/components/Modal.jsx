@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Message from './Message';
 import Close from '../img/cerrar.svg'
 
@@ -15,6 +15,8 @@ const Modal = ({
     animateModal,
     setAnimateModal,
     saveExpense,
+    editExpense,
+    setEditExpense,
 }) => {
 
 /*
@@ -24,6 +26,14 @@ const Modal = ({
     const [expenseAmount, setExpenseAmount] = useState(0);
     const [expenseCategory, setExpenseCategory] = useState('');
     const [modalMessage, setModalMessage] = useState('');
+
+    useEffect(() => {
+        if (Object.keys(editExpense).length > 0) {
+            setExpenseName(editExpense.expenseName);
+            setExpenseAmount(editExpense.expenseAmount);
+            setExpenseCategory(editExpense.expenseCategory);
+        }
+    }, []);
 /*
     * Funcion que esconde el modal
     * modifical el state del animador
@@ -32,8 +42,12 @@ const Modal = ({
     * de medio segundo
 */
     const hideModal = () => {
-        setAnimateModal(false);
+        if (Object.keys(editExpense).length > 0) {
+            setEditExpense({});
+            console.log('Entre');
+        }
 
+        setAnimateModal(false);
         setTimeout(() => {
             setModal(false);
         }, 500);
