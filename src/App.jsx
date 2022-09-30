@@ -47,9 +47,15 @@ function App() {
   */
 
   const saveExpense = (expense) => {
-    expense.id = idGenerate();
-    expense.expenseDate = dateGenerate();
-    setExpenses([...expenses, expense]);
+    if (expense.id) {
+      // Update
+
+    } else {
+      // Create
+      expense.id = idGenerate();
+      expense.expenseDate = dateGenerate();
+      setExpenses([...expenses, expense]);
+    }
 
     setAnimateModal(false);
     setTimeout(() => {

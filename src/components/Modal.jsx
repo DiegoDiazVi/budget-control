@@ -26,12 +26,15 @@ const Modal = ({
     const [expenseAmount, setExpenseAmount] = useState(0);
     const [expenseCategory, setExpenseCategory] = useState('');
     const [modalMessage, setModalMessage] = useState('');
-
+    const [isEditModal, setIsEditModal] = useState(false);
+    const [id, setId] = useState('');
     useEffect(() => {
         if (Object.keys(editExpense).length > 0) {
+            setIsEditModal(true);
             setExpenseName(editExpense.expenseName);
             setExpenseAmount(editExpense.expenseAmount);
             setExpenseCategory(editExpense.expenseCategory);
+            setId(editExpense.id);
         }
     }, []);
 /*
@@ -44,7 +47,7 @@ const Modal = ({
     const hideModal = () => {
         if (Object.keys(editExpense).length > 0) {
             setEditExpense({});
-            console.log('Entre');
+            setIsEditModal(false);
         }
 
         setAnimateModal(false);
@@ -89,7 +92,7 @@ const Modal = ({
                 />
             </div>
             <form onSubmit={handleSubmit} className={`formulario ${animateModal ? 'animar' : 'cerrar'}`}>
-                <legend>Nuevo Gasto</legend>
+                <legend>{isEditModal ? 'Editar gasto' : 'Nuevo Gasto'}</legend>
 
                 {modalMessage && <Message tipo='error'>{modalMessage}</Message>}
 
@@ -133,9 +136,9 @@ const Modal = ({
                     </select>
                 </div>
 
-                <input type="submit" value='Añadir gasto' />
+                <input type="submit" value={isEditModal ? 'Editar gasto' :'Añadir gasto'} />
             </form>
-        </div>
+/src/img/icono_casa.svg        </div>
     )
 }
 
