@@ -45,14 +45,13 @@ const Modal = ({
     * de medio segundo
 */
     const hideModal = () => {
-        if (Object.keys(editExpense).length > 0) {
-            setEditExpense({});
-            setIsEditModal(false);
-        }
-
         setAnimateModal(false);
         setTimeout(() => {
             setModal(false);
+            if (Object.keys(editExpense).length > 0) {
+                setIsEditModal(false);
+                setEditExpense({});
+            }
         }, 500);
     }
 
@@ -138,7 +137,7 @@ const Modal = ({
 
                 <input type="submit" value={isEditModal ? 'Editar gasto' :'Añadir gasto'} />
             </form>
-/src/img/icono_casa.svg        </div>
+        </div>
     )
 }
 
