@@ -71,6 +71,7 @@ function App() {
     setAnimateModal(false);
     setTimeout(() => {
       setModal(false);
+      setEditExpense({});
   }, 500);
   }
 

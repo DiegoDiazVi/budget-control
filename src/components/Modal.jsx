@@ -26,7 +26,7 @@ const Modal = ({
     const [expenseAmount, setExpenseAmount] = useState(0);
     const [expenseCategory, setExpenseCategory] = useState('');
     const [modalMessage, setModalMessage] = useState('');
-    const [isEditModal, setIsEditModal] = useState(false);
+    const [expenseDate, setExpenseDate] = useState('');
     const [id, setId] = useState('');
 
     /*
@@ -37,10 +37,10 @@ const Modal = ({
     */
     useEffect(() => {
         if (Object.keys(editExpense).length > 0) {
-            setIsEditModal(true);
             setExpenseName(editExpense.expenseName);
             setExpenseAmount(editExpense.expenseAmount);
             setExpenseCategory(editExpense.expenseCategory);
+            setExpenseDate(editExpense.expenseDate);
             setId(editExpense.id);
         }
     }, []);
@@ -55,10 +55,7 @@ const Modal = ({
         setAnimateModal(false);
         setTimeout(() => {
             setModal(false);
-            if (Object.keys(editExpense).length > 0) {
-                setIsEditModal(false);
-                setEditExpense({});
-            }
+            setEditExpense({});
         }, 500);
     }
 
@@ -76,7 +73,7 @@ const Modal = ({
             return
         }
         setModalMessage('');
-        saveExpense({expenseName, expenseAmount, expenseCategory, id});
+        saveExpense({expenseName, expenseAmount, expenseCategory, id, expenseDate});
     }
 
 /*
@@ -98,7 +95,7 @@ const Modal = ({
                 />
             </div>
             <form onSubmit={handleSubmit} className={`formulario ${animateModal ? 'animar' : 'cerrar'}`}>
-                <legend>{isEditModal ? 'Editar gasto' : 'Nuevo Gasto'}</legend>
+                <legend>{editExpense.expenseName ? 'Editar gasto' : 'Nuevo Gasto'}</legend>
 
                 {modalMessage && <Message tipo='error'>{modalMessage}</Message>}
 
@@ -142,7 +139,7 @@ const Modal = ({
                     </select>
                 </div>
 
-                <input type="submit" value={isEditModal ? 'Editar gasto' :'Añadir gasto'} />
+                <input type="submit" value={editExpense.expenseName ? 'Editar gasto' :'Añadir gasto'} />
             </form>
         </div>
     )
