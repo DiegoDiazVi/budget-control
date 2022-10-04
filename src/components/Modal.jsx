@@ -28,6 +28,13 @@ const Modal = ({
     const [modalMessage, setModalMessage] = useState('');
     const [isEditModal, setIsEditModal] = useState(false);
     const [id, setId] = useState('');
+
+    /*
+        * Efecto que se dispara
+        * cada vez que se abre el
+        * modal y en caso de que sea
+        * para editar, entonces
+    */
     useEffect(() => {
         if (Object.keys(editExpense).length > 0) {
             setIsEditModal(true);
@@ -69,7 +76,7 @@ const Modal = ({
             return
         }
         setModalMessage('');
-        saveExpense({expenseName, expenseAmount, expenseCategory});
+        saveExpense({expenseName, expenseAmount, expenseCategory, id});
     }
 
 /*

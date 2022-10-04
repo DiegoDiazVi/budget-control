@@ -8,8 +8,10 @@ import NewExpenseIcon from './img/nuevo-gasto.svg'
 function App() {
 
   /*
-    *States de los gastos, Flag de gasto valido,
-    *flag de mostrar modal, flag de animar el modal
+    * States de los gastos, Flag de gasto valido,
+    * flag de mostrar modal, flag de animar el modal
+    * state del array que almacena los gastos,
+    * state del gasto que se va a editar
   */
 
   const [budget, setBudget] = useState(0);
@@ -19,6 +21,12 @@ function App() {
   const [expenses, setExpenses] = useState([]);
   const [editExpense, setEditExpense] = useState({});
 
+
+  /*
+    * Efecto que se dispara cada que
+    * el state de editExpense cambia
+    * abriendo el modal con la animacion.
+   */
   useEffect(() => {
     if (Object.keys(editExpense).length > 0) {
       handleNewBudget();
@@ -49,7 +57,7 @@ function App() {
   const saveExpense = (expense) => {
     if (expense.id) {
       // Update
-
+      const updateExpense = expenses.map( item  => item.id === expense.id)
     } else {
       // Create
       expense.id = idGenerate();
@@ -73,8 +81,8 @@ function App() {
     * ------ New Budget ----
     * Si el state del presupeusto es valido
     * se muestra el icono para agregar el gasto
-    * ------ Modal ---------
     *
+    * ------ Modal ---------
     * Si el state del modal existe muestra el
     * modal y le propaga el modificador del modal
     * el state del animador del modal y  el
