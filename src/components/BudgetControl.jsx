@@ -1,6 +1,8 @@
 import React from 'react'
 import { useState, useEffect} from 'react';
+import { CircularProgressbar } from 'react-circular-progressbar';
 import { toCurrencyFormat } from '../helpers';
+import 'react-circular-progressbar/dist/styles.css';
 
 /*
     * Componente que muestra el dashboard
@@ -24,7 +26,7 @@ const BudgetControl = ({budget, expenses}) => {
     return (
         <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
             <div>
-                <p>Grafica</p>
+                <CircularProgressbar value={30} text={'Gastado'}/>
             </div>
             <div className="contenido-presupuesto">
                 <p>
