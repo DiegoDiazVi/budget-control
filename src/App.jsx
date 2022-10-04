@@ -75,6 +75,11 @@ function App() {
   }, 500);
   }
 
+  const deleteExpense = (id) => {
+    const expenseDeleted = expenses.filter( expense => expense.id !== id);
+    setExpenses(expenseDeleted);
+  }
+
       /*
     * ------ Header --------
     * Se propaga el state del prespuesto
@@ -104,7 +109,7 @@ function App() {
       {isBudgetValid && (
         <>
         <main>
-          <BudgetList expenses={expenses} setEditExpense={setEditExpense}/>
+          <BudgetList expenses={expenses} setEditExpense={setEditExpense} deleteExpense={deleteExpense}/>
         </main>
           <div className="nuevo-gasto">
             <img
