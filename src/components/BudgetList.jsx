@@ -1,6 +1,14 @@
 import React from 'react'
 import Expense from './Expense'
 
+
+/*
+    * Componente que recibe los
+    * gastos, el modificador del
+    * los gasos y la funcion de
+    * eliminar los gastos y las
+    * envia al componente expenses
+*/
 const BudgetList = ({expenses, setEditExpense, deleteExpense}) => {
     return (
         <div className='listado-gastos contenedor'>

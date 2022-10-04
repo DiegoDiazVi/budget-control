@@ -10,10 +10,22 @@ import 'react-circular-progressbar/dist/styles.css';
 */
 const BudgetControl = ({budget, expenses}) => {
 
+    /*
+        * states de lo disponible,
+        * lo gastado y el porcentaje
+    */
     const [available, setAvailable] = useState(0);
     const [spent, setSpent] = useState(0);
     const [percentage, setPercentage] = useState(0);
 
+    /*
+        * Efecto que se dispara cada que
+        * los gastos cambian y de esta forma
+        * se hacen los calculos de cuanto
+        * tengo disponible y cuanto tengo
+        * gastado, tambien calcula el
+        * porcentaje de la grafica.
+    */
     useEffect(() => {
         const spentTotal = expenses.reduce((total, expense) => expense.expenseAmount + total, 0);
         const availableTotal = budget - spentTotal;
@@ -25,9 +37,13 @@ const BudgetControl = ({budget, expenses}) => {
         }, 1000);
     }, [expenses]);
 
-/*
-    * Muestra el dashboard
-*/
+    /*
+        * Muestra el dashboard
+        * y la grafica del componente
+        * importado CircularProgressBar
+        * con la propiedad predeterminada
+        * buildStyles que tambien se importa
+    */
     return (
         <div className='contenedor-presupuesto contenedor sombra dos-columnas'>
             <div>

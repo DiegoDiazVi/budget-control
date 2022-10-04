@@ -50,8 +50,9 @@ function App() {
 
   /*
     * Funcion setea el estado de los gastos
-    * para que almacene el gasto a registrar y
-    * luego deje de muestrar modal
+    * para que modifique o cree el
+    * gasto y leugo lo almacene  y
+    * deje de muestrar modal
   */
 
   const saveExpense = (expense) => {
@@ -87,6 +88,10 @@ function App() {
     * Se propaga el state  si el prespuesto
     * es valido y  el modificador
     *
+    * ------ BudgetList ----
+    * Si el state del presupeusto es valido
+    * se muestra el listado de gastos
+    *
     * ------ New Budget ----
     * Si el state del presupeusto es valido
     * se muestra el icono para agregar el gasto
@@ -95,7 +100,10 @@ function App() {
     * Si el state del modal existe muestra el
     * modal y le propaga el modificador del modal
     * el state del animador del modal y  el
-    * modificador de este
+    * modificador de este, tambien se envia
+    * la funcion que me permite guardar el
+    * gasto, el state del gasto a editar y
+    * el modificador del gasto a editar
   */
   return (
     <div className={modal ? 'fijar' : ''}>
@@ -121,7 +129,16 @@ function App() {
         </>
       )}
 
-      {modal && <Modal setModal={setModal} animateModal={animateModal} setAnimateModal={setAnimateModal} saveExpense={saveExpense} editExpense={editExpense} setEditExpense={setEditExpense}/>}
+      {
+        modal && <Modal
+                    setModal={setModal}
+                    animateModal={animateModal}
+                    setAnimateModal={setAnimateModal}
+                    saveExpense={saveExpense}
+                    editExpense={editExpense}
+                    setEditExpense={setEditExpense}
+                  />
+      }
     </div>
   )
 }

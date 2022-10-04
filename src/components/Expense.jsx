@@ -1,4 +1,5 @@
 import React from 'react'
+/* Importacion de los componentes que permiten deslizar */
 import {
     LeadingActions,
     SwipeableList,
@@ -8,7 +9,7 @@ import {
 } from 'react-swipeable-list';
 import 'react-swipeable-list/dist/styles.css';
 import { toCurrencyFormat } from '../helpers';
-
+/* Importacion de iconos */
 import SaveIcon from '../img/icono_ahorro.svg';
 import HouseIcon from '../img/icono_casa.svg';
 import FoodIcon from '../img/icono_comida.svg';
@@ -16,7 +17,7 @@ import ExpensesIcon from '../img/icono_gastos.svg';
 import EntertainmentIcon from '../img/icono_ocio.svg';
 import HealthIcon from '../img/icono_salud.svg';
 import SuscriptionIcon from '../img/icono_suscripciones.svg';
-
+/* Diccionario de iconos */
 const iconsDictionary = {
     ahorro: SaveIcon,
     hogar: HouseIcon,
@@ -27,9 +28,12 @@ const iconsDictionary = {
     suscripciones: SuscriptionIcon,
 }
 
+
 const Expense = ({expense, setEditExpense, deleteExpense}) => {
+    /* Desestructuring de expense */
     const {expenseCategory, expenseAmount, expenseName, expenseDate, id} = expense;
 
+    /* Deslizar a la izquierda y editar el gasto */
     const leadingActions = () => (
         <LeadingActions>
             <SwipeAction onClick={() => setEditExpense(expense)}>
@@ -37,7 +41,7 @@ const Expense = ({expense, setEditExpense, deleteExpense}) => {
             </SwipeAction>
         </LeadingActions>
     );
-
+    /* Deslizar a la derecha y borrar el gasto*/
     const trailingActions = () => (
         <TrailingActions>
             <SwipeAction
