@@ -14,7 +14,7 @@ function App() {
     * state del gasto que se va a editar
   */
 
-  const [budget, setBudget] = useState(0);
+  const [budget, setBudget] = useState(Number(localStorage.getItem('budget')) ?? 0);
   const [isBudgetValid, setIsBudgetValid] = useState(false);
   const [modal, setModal] = useState(false);
   const [animateModal, setAnimateModal] = useState(false);
@@ -31,7 +31,19 @@ function App() {
     if (Object.keys(editExpense).length > 0) {
       handleNewBudget();
     }
-  }, [editExpense])
+  }, [editExpense]);
+
+  useEffect(() => {
+    localStorage.setItem('budget', budget ?? 0);
+  }, [budget]);
+
+  useEffect(() => {
+    const budgetLs = Number(localStorage.getItem('budget')) ?? 0;
+    if (budgetLs > 0) {
+      setIsBudgetValid(true);
+    }
+  }, []);
+
 
     /*
     * Funcion setea el estado del modal
