@@ -22,6 +22,7 @@ function App() {
   const [expenses, setExpenses] = useState([...JSON.parse(localStorage.getItem('expenses')) ?? []]);
   const [editExpense, setEditExpense] = useState({});
   const [filter, setFilter] = useState('');
+  const [filterExpenses, setFilterExpenses] = useState([]);
 
 
   /*
@@ -49,6 +50,14 @@ function App() {
   useEffect(() => {
     localStorage.setItem('expenses', JSON.stringify(expenses) ?? []);
   }, [expenses]);
+
+  useEffect(() => {
+    if (filter) {
+      const expensesFiltered = expenses.filter(expense => expense.expenseCategory === filter);
+      setFilterExpenses(expensesFiltered);
+    }
+  }, [filter]);
+
 
     /*
     * Funcion setea el estado del modal
