@@ -29,7 +29,7 @@ const BudgetControl = ({budget, expenses}) => {
     useEffect(() => {
         const spentTotal = expenses.reduce((total, expense) => expense.expenseAmount + total, 0);
         const availableTotal = budget - spentTotal;
-        const percentageTotal = ((availableTotal / budget) * 100).toFixed(2);
+        const percentageTotal = (((budget - availableTotal) / budget) * 100).toFixed(2);
         setAvailable(availableTotal);
         setSpent(spentTotal);
         setTimeout(() => {
