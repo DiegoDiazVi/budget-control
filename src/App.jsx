@@ -18,7 +18,7 @@ function App() {
   const [isBudgetValid, setIsBudgetValid] = useState(false);
   const [modal, setModal] = useState(false);
   const [animateModal, setAnimateModal] = useState(false);
-  const [expenses, setExpenses] = useState([]);
+  const [expenses, setExpenses] = useState([...JSON.parse(localStorage.getItem('expenses')) ?? []]);
   const [editExpense, setEditExpense] = useState({});
 
 
@@ -44,6 +44,9 @@ function App() {
     }
   }, []);
 
+  useEffect(() => {
+    localStorage.setItem('expenses', JSON.stringify(expenses) ?? []);
+  }, [expenses]);
 
     /*
     * Funcion setea el estado del modal
