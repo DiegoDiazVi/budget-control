@@ -4,6 +4,7 @@ import Modal from './components/Modal';
 import BudgetList from './components/BudgetList';
 import { idGenerate, dateGenerate } from './helpers';
 import NewExpenseIcon from './img/nuevo-gasto.svg'
+import Filters from './components/Filters';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
   const [animateModal, setAnimateModal] = useState(false);
   const [expenses, setExpenses] = useState([...JSON.parse(localStorage.getItem('expenses')) ?? []]);
   const [editExpense, setEditExpense] = useState({});
+  const [filter, setFilter] = useState('');
 
 
   /*
@@ -132,6 +134,7 @@ function App() {
       {isBudgetValid && (
         <>
         <main>
+          {expenses.length > 0 && <Filters filter={filter} setFilter={setFilter}/>}
           <BudgetList expenses={expenses} setEditExpense={setEditExpense} deleteExpense={deleteExpense}/>
         </main>
           <div className="nuevo-gasto">
