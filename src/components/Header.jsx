@@ -10,7 +10,8 @@ const Header = ({
         setBudget,
         isBudgetValid,
         setIsBudgetValid,
-        expenses
+        expenses,
+        setExpenses,
 }) => {
     /*
         * Si la flag del presupuesto es
@@ -27,7 +28,10 @@ const Header = ({
             { isBudgetValid ? (
                 <BudgetControl
                     budget={budget}
+                    setBudget={setBudget}
                     expenses={expenses}
+                    setExpenses={setExpenses}
+                    setIsBudgetValid={setIsBudgetValid}
                 />
             ) : (
                 <NewBudget

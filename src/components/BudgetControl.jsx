@@ -8,7 +8,13 @@ import 'react-circular-progressbar/dist/styles.css';
     * Componente que muestra el dashboard
     * con grafica del presupuesto
 */
-const BudgetControl = ({budget, expenses}) => {
+const BudgetControl = ({
+    budget,
+    setBudget,
+    expenses,
+    setExpenses,
+    setIsBudgetValid
+}) => {
 
     /*
         * states de lo disponible,
@@ -39,13 +45,26 @@ const BudgetControl = ({budget, expenses}) => {
     /*
         * Efecto que se dispara cada que
         * el porcentaje cambia para cambiar
-        * la clase 
+        * la clase
     */
     useEffect(() => {
         const classStyle = percentage > 100 ? '#F73030' : '#3B82F6'
         setClassProgress(classStyle);
     }, [percentage]);
 
+    /*
+        * Funcion manejadora del
+    */
+    const handleResetApp = () => {
+        const result = confirm('Deseas reiniciar el presupeusto y gasto ?');
+        if (result) {
+            setBudget(0);
+            setExpenses([]);
+            setIsBudgetValid(false);
+            localStorage.removeItem('budget');
+            localStorage.removeItem('expenses');
+        }
+    }
     /*
         * Muestra el dashboard
         * y la grafica del componente
@@ -67,6 +86,13 @@ const BudgetControl = ({budget, expenses}) => {
                 />
             </div>
             <div className="contenido-presupuesto">
+                <button
+                    className='reset-app'
+                    type='button'
+                    onClick={handleResetApp}
+                >
+                    Restaurar App
+                </button>
                 <p>
                     <span>Presupuesto: </span> {toCurrencyFormat(budget)}
                 </p>
