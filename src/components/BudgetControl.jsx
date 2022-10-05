@@ -17,7 +17,7 @@ const BudgetControl = ({budget, expenses}) => {
     const [available, setAvailable] = useState(0);
     const [spent, setSpent] = useState(0);
     const [percentage, setPercentage] = useState(0);
-
+    const [classProgress, setClassProgress] = useState('');
     /*
         * Efecto que se dispara cada que
         * los gastos cambian y de esta forma
@@ -36,6 +36,15 @@ const BudgetControl = ({budget, expenses}) => {
             setPercentage(percentageTotal);
         }, 1000);
     }, [expenses]);
+    /*
+        * Efecto que se dispara cada que
+        * el porcentaje cambia para cambiar
+        * la clase 
+    */
+    useEffect(() => {
+        const classStyle = percentage > 100 ? '#F73030' : '#3B82F6'
+        setClassProgress(classStyle);
+    }, [percentage]);
 
     /*
         * Muestra el dashboard
@@ -49,9 +58,9 @@ const BudgetControl = ({budget, expenses}) => {
             <div>
                 <CircularProgressbar
                     styles={buildStyles({
-                        pathColor: '#3B82F6',
+                        pathColor: classProgress,
                         trailColor: '#F5F5F5',
-                        textColor: '#3B82F6',
+                        textColor: classProgress,
                     })}
                     value={percentage}
                     text={`${percentage}% Gastado`}
@@ -61,7 +70,7 @@ const BudgetControl = ({budget, expenses}) => {
                 <p>
                     <span>Presupuesto: </span> {toCurrencyFormat(budget)}
                 </p>
-                <p>
+                <p className={`${available < 0 ? 'negativo' : ''}`}>
                     <span>Disponible: </span> {toCurrencyFormat(available)}
                 </p>
                 <p>
