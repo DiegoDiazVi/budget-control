@@ -58,8 +58,8 @@ const BudgetControl = ({
     const handleResetApp = () => {
         const result = confirm('Deseas reiniciar el presupeusto y gasto ?');
         if (result) {
-            setBudget(0);
             setExpenses([]);
+            setBudget(0);
             setIsBudgetValid(false);
             localStorage.removeItem('budget');
             localStorage.removeItem('expenses');
