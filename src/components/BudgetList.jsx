@@ -9,18 +9,44 @@ import Expense from './Expense'
     * eliminar los gastos y las
     * envia al componente expenses
 */
-const BudgetList = ({expenses, setEditExpense, deleteExpense}) => {
+const BudgetList = ({
+    expenses,
+    setEditExpense,
+    deleteExpense,
+    filter,
+    filterExpenses,
+}) => {
     return (
         <div className='listado-gastos contenedor'>
-            <h2>{expenses.length ? 'Gastos' : 'No hay gastos aún'}</h2>
-            {expenses.map( expense => (
-                <Expense
-                    key={expense.id}
-                    expense={expense}
-                    setEditExpense={setEditExpense}
-                    deleteExpense={deleteExpense}
-                />
-            ))}
+            {
+                filter ? (
+                    <>
+                        <h2>{filterExpenses.length ? 'Gastos' : 'No hay gastos en la categoria'}</h2>
+                        {filterExpenses.map( expense => (
+                            <Expense
+                                key={expense.id}
+                                expense={expense}
+                                setEditExpense={setEditExpense}
+                                deleteExpense={deleteExpense}
+                            />
+                        ))
+                        }
+                    </>
+                ) : (
+                    <>
+                        <h2>{expenses.length ? 'Gastos' : 'No hay gastos aún'}</h2>
+                        {expenses.map( expense => (
+                            <Expense
+                                key={expense.id}
+                                expense={expense}
+                                setEditExpense={setEditExpense}
+                                deleteExpense={deleteExpense}
+                            />
+                        ))
+                        }
+                    </>
+                )
+            }
         </div>
     )
 }

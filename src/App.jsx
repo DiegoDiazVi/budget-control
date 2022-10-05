@@ -144,7 +144,13 @@ function App() {
         <>
         <main>
           {expenses.length > 0 && <Filters filter={filter} setFilter={setFilter}/>}
-          <BudgetList expenses={expenses} setEditExpense={setEditExpense} deleteExpense={deleteExpense}/>
+          <BudgetList
+            expenses={expenses}
+            setEditExpense={setEditExpense}
+            deleteExpense={deleteExpense}
+            filter={filter}
+            filterExpenses={filterExpenses}
+          />
         </main>
           <div className="nuevo-gasto">
             <img
